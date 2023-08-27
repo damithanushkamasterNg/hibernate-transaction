@@ -16,20 +16,22 @@ public class SessionFactoryConfiguration {
     private SessionFactory sessionFactory;
 
     private SessionFactoryConfiguration() {
-        Configuration configuration = new Configuration().configure().addAnnotatedClass(CustomerEntity.class)
-                .addAnnotatedClass(OrderEntity.class)
-                .addAnnotatedClass(ItemEntity.class)
-                .addAnnotatedClass(OrderDetailEntity.class);
+        Configuration configuration = new Configuration().configure()
+        .addAnnotatedClass(CustomerEntity.class)
+        .addAnnotatedClass(OrderEntity.class)
+        .addAnnotatedClass(ItemEntity.class)
+        .addAnnotatedClass(OrderDetailEntity.class);
 
         sessionFactory = configuration.buildSessionFactory();
     }
 
     public static SessionFactoryConfiguration getInstance() {
-        return sessionFactoryConfiguration == null ? sessionFactoryConfiguration = new SessionFactoryConfiguration()
+        return sessionFactoryConfiguration == null ? 
+                sessionFactoryConfiguration = new SessionFactoryConfiguration()
                 : sessionFactoryConfiguration;
     }
 
-    public Session getSession() {
+    public Session getSession(){
         return sessionFactory.openSession();
     }
 
